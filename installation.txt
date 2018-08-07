@@ -1,0 +1,48 @@
+=-=-=-=-=-= ROOT A-Sure =-=-=-=-=-=
+
+@echo off
+
+adb kill-server
+adb connect %1
+adb root
+adb connect %1
+
+adb shell mount -o rw,remount /system
+adb shell mount -o rw,remount /system /system
+adb shell mount -o rw,remount /
+adb shell mount -o rw,remount / /
+
+adb shell "mkdir /tmp"
+adb shell "mkdir /tmp/supersu"
+
+adb push chattr.pie /tmp/supersu/
+adb push install.sh /tmp/supersu/
+adb push install-recovery.sh /tmp/supersu/
+adb push libsupol.so /tmp/supersu/
+adb push su.pie /tmp/supersu/
+adb push Superuser.apk /tmp/supersu/
+adb push supolicy /tmp/supersu/
+
+adb shell chmod 0755 /tmp/supersu/install.sh
+adb shell "cd /tmp/supersu/ && sh install.sh"
+
+adb shell rm -rf /tmp/supersu
+
+echo Reboot your Head Unit NOW!
+
+=-=-=-=-=-=
+
+Install Zoulou DAB+
+
+
+=-=-=-=-=-=
+
+huawei E1750 Android fix
+
+
+
+# screen /dev/ttyUSB0
+
+AT^U2DIAG=0^M
+
+=-=-=-=-=-=
