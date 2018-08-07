@@ -1,11 +1,16 @@
 =-=-=-=-=-= ROOT A-Sure =-=-=-=-=-=
 
-@echo off
+First install the original firmware from A-Sure. Don't forget to rename the 5009_20.zip to 5009_60.zip.
+Put everything from the original file in the root of a USB stick
 
-adb kill-server
-adb connect %1
+When everything is ready, install ADB over Wifi (https://play.google.com/store/apps/details?id=za.co.henry.hsu.adbwirelessbyhenry)
+Connect the car head unit (HU) and a Linux/Windows laptop to the same network. And install adb tools.
+
+Download the file from root-files and place them into your working directory
+
+adb connect <ip of HU>
 adb root
-adb connect %1
+adb connect <ip of HU)
 
 adb shell mount -o rw,remount /system
 adb shell mount -o rw,remount /system /system
@@ -28,21 +33,32 @@ adb shell "cd /tmp/supersu/ && sh install.sh"
 
 adb shell rm -rf /tmp/supersu
 
-echo Reboot your Head Unit NOW!
+adb shell reboot
 
-=-=-=-=-=-=
+=-=-=-=-=-= DAB+ App =-=-=-=-=-=-=-=-
+
+Because the default DAB+ is terrible. I want to install ZouLou DAB+ replacement.
+Before you can install zoulou DAB+ you have to uninstall the original one.
 
 Install Zoulou DAB+
 
+More information coming soon.
 
-=-=-=-=-=-=
+=-=-=-=-=-= Huawei E1750 =-=-=-=-=-=-=-
 
-huawei E1750 Android fix
+I have some troubles with my E1750 4G stick. It won't recognised by the Android device. I had installed PPP Widget, but it not always run good.
+So I have to change the cd-rom capability of the Huawei E1750.
 
-
+Huawei E1750 Android fix
+On a Linux computer install the screen application (yum install screen of apt-get install screen)
+Login as root and do the following: (where ttyUSB0 is the name of the Huawei E1750 stick)
 
 # screen /dev/ttyUSB0
 
 AT^U2DIAG=0^M
+
+^C
+
+Now you have turn of the cd-rom capability
 
 =-=-=-=-=-=
